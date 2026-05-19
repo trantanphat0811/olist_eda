@@ -2,6 +2,8 @@
 
 > Phân tích toàn diện dữ liệu thương mại điện tử Brazil giai đoạn 2016–2018 sử dụng Python và Power BI.
 
+![Python](https://img.shields.io/badge/Python-3.10-blue?logo=python) ![Power BI](https://img.shields.io/badge/PowerBI-Dashboard-yellow?logo=powerbi) ![License](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)
+
 ---
 
 ## 📌 Giới thiệu dự án
@@ -45,7 +47,7 @@ Dự án này phân tích bộ dữ liệu thực tế từ **Olist** — nền 
 ## 📁 Cấu trúc dự án
 
 ```
-olist-eda/
+olist_eda/
 ├── data/
 │   ├── olist_orders_dataset.csv
 │   ├── olist_order_items_dataset.csv
@@ -60,16 +62,18 @@ olist-eda/
 │   ├── powerbi_monthly.csv
 │   ├── powerbi_state.csv
 │   └── powerbi_category.csv
-├── charts/
-│   ├── 01_monthly_revenue.png
-│   ├── 02_state_revenue.png
-│   ├── 03_categories.png
-│   ├── 04_order_status.png
-│   ├── 05_review_delivery.png
-│   ├── 06_payment.png
-│   └── 07_delivery_dist.png
+├── image/
+├── chart_01_monthly.png
+├── chart_02_states.png
+├── chart_03_categories.png
+├── chart_04_status.png
+├── chart_05_reviews.png
+├── chart_06_payment.png
+├── chart_07_delivery.png
+├── overview_dashboard.png
+├── Product_Analysis.png
+├── Delivery&Satisfaction.png
 ├── Olist_EDA.ipynb
-├── Olist_Dashboard.pbix
 └── README.md
 ```
 
@@ -79,8 +83,8 @@ olist-eda/
 
 ```bash
 # 1. Clone repo
-git clone https://github.com/<your-username>/olist-eda.git
-cd olist-eda
+git clone https://github.com/trantanphat0811/olist_eda.git
+cd olist_eda
 
 # 2. Tạo môi trường Conda
 conda create -n olist-eda python=3.10
@@ -109,23 +113,162 @@ jupyter notebook Olist_EDA.ipynb
 
 - Chuyển đổi kiểu dữ liệu datetime
 - Merge 9 bảng thành 1 dataframe tổng
-- Lọc chỉ giữ đơn hàng đã giao thành công
+- Lọc chỉ giữ đơn hàng đã giao thành công (`status = delivered`)
 - Tạo các cột phân tích: `year_month`, `delivery_days`, `weekday`
 
-### Bước 3 — Phân tích & Visualization (7 góc phân tích)
+### Bước 3 — Phân tích & Visualization
 
-1. Doanh thu theo tháng
-2. Doanh thu theo bang (địa lý)
-3. Top 15 danh mục sản phẩm
-4. Phân bổ trạng thái đơn hàng
-5. Review score vs thời gian giao hàng
-6. Phương thức thanh toán
-7. Phân phối thời gian giao hàng
+7 góc phân tích, mỗi góc tương ứng 1 chart (xem chi tiết bên dưới).
 
 ### Bước 4 — Export & Dashboard
 
 - Export 4 file CSV sạch cho Power BI
 - Xây dựng Dashboard 3 trang trong Power BI
+
+---
+
+## 📈 Charts — Phân tích & Giải thích
+
+Dưới đây là toàn bộ 7 biểu đồ được tạo ra trong notebook, kèm mô tả chức năng và insight rút ra từ mỗi chart.
+
+---
+
+### Chart 01 — Doanh thu theo tháng (Monthly Revenue Trend)
+
+![Chart 01 - Monthly Revenue](chart_01_monthly.png)
+
+**Chức năng:** Line chart thể hiện tổng doanh thu (BRL) theo từng tháng từ 2016 đến 2018. Đây là chart **tổng quan nhất** của toàn bộ dự án — cho thấy xu hướng tăng trưởng và các điểm bất thường theo thời gian.
+
+**Vì sao cần chart này?**
+Trước khi đi sâu vào bất kỳ phân tích nào, cần hiểu tổng thể business đang tăng hay giảm. Chart này trả lời câu hỏi: *"Olist đang phát triển như thế nào theo thời gian?"*
+
+**Insight rút ra:**
+
+- Doanh thu tăng trưởng đều từ Q1/2017, đạt đỉnh vào **Q4/2017** (Tháng 11 — mùa mua sắm cuối năm)
+- Có sự sụt giảm nhẹ đầu 2018 trước khi phục hồi trở lại
+- Tổng cộng **~19.87M BRL** trong vòng 2 năm
+
+---
+
+### Chart 02 — Doanh thu theo Bang (Revenue by State)
+
+![Chart 02 - Revenue by State](chart_02_states.png)
+
+**Chức năng:** Bar chart nằm ngang xếp hạng 27 bang của Brazil theo tổng doanh thu. Cho thấy sự **tập trung địa lý** của thị trường E-commerce tại Brazil.
+
+**Vì sao cần chart này?**
+Không phải mọi bang đều đóng góp như nhau. Xác định được bang nào là thị trường trọng điểm giúp Olist ưu tiên đầu tư logistics, marketing và mở rộng hệ thống phân phối.
+
+**Insight rút ra:**
+
+- **São Paulo (SP)** chiếm ~40% tổng doanh thu — gần gấp đôi bang đứng thứ 2
+- Top 3: **SP → RJ → MG** — tập trung hoàn toàn ở vùng Đông Nam
+- Các bang phía Bắc (RR, AP, AC) đóng góp rất nhỏ → tiềm năng mở rộng còn rất lớn
+
+---
+
+### Chart 03 — Top 15 Danh mục Sản phẩm (Product Categories)
+
+![Chart 03 - Top Categories](chart_03_categories.png)
+
+**Chức năng:** Bar chart so sánh doanh thu của 15 danh mục sản phẩm bán chạy nhất. Giúp xác định **portfolio sản phẩm nào đang drive revenue** cho platform.
+
+**Vì sao cần chart này?**
+Trong E-commerce, không phải category nào cũng đóng góp như nhau. Biết được đâu là category ngôi sao giúp tối ưu inventory, chiến lược promotion và thu hút seller phù hợp.
+
+**Insight rút ra:**
+
+- **bed_bath_table** dẫn đầu về doanh thu
+- **health_beauty** và **computers_accessories** lọt top 3
+- Có khoảng cách lớn giữa top 3 và phần còn lại → chiến lược "focus vào winner" có thể hiệu quả hơn dàn trải đều
+
+---
+
+### Chart 04 — Phân bổ Trạng thái Đơn hàng (Order Status Distribution)
+
+![Chart 04 - Order Status](chart_04_status.png)
+
+**Chức năng:** Pie chart hoặc bar chart thể hiện tỷ lệ các trạng thái đơn hàng (delivered, shipped, canceled, unavailable...). Đây là chart **đo lường chất lượng vận hành** của toàn platform.
+
+**Vì sao cần chart này?**
+Tỷ lệ đơn hàng không giao thành công (canceled, unavailable) phản ánh trực tiếp trải nghiệm khách hàng và phần doanh thu bị mất. Đây là baseline bắt buộc trước khi đi vào phân tích chuyên sâu hơn.
+
+**Insight rút ra:**
+
+- Đại đa số đơn hàng ở trạng thái `delivered` → platform hoạt động ổn định
+- Tỷ lệ `canceled` cần được theo dõi chi tiết theo category để tìm nguyên nhân gốc rễ
+
+---
+
+### Chart 05 — Review Score vs Thời gian Giao hàng (Delivery Time Impact)
+
+![Chart 05 - Reviews vs Delivery](chart_05_reviews.png)
+
+**Chức năng:** Bar chart hoặc grouped chart thể hiện mối quan hệ giữa số ngày giao hàng và điểm review trung bình của khách hàng. Đây là **insight quan trọng nhất** của toàn dự án về customer experience.
+
+**Vì sao cần chart này?**
+Delivery time là yếu tố nằm trong tầm kiểm soát của Olist và seller. Nếu có bằng chứng rõ ràng rằng giao hàng chậm làm giảm review, đây là actionable insight có thể triển khai ngay.
+
+**Insight rút ra:**
+
+- Đơn giao **< 5 ngày**: ~70% khách cho **5 sao**
+- Đơn giao **> 20 ngày**: review score trung bình chỉ **2.8/5**
+- Mối quan hệ nghịch chiều rõ ràng: giao hàng càng chậm → satisfaction càng thấp
+- **Ngưỡng critical ~10 ngày:** Vượt qua mốc này, điểm review bắt đầu giảm mạnh
+
+---
+
+### Chart 06 — Phương thức Thanh toán (Payment Methods)
+
+![Chart 06 - Payment Methods](chart_06_payment.png)
+
+**Chức năng:** Pie chart hoặc bar chart thể hiện tỷ lệ các phương thức thanh toán được sử dụng (credit card, boleto, voucher, debit card). Cho thấy **hành vi tài chính** của người mua Brazil.
+
+**Vì sao cần chart này?**
+Hiểu phương thức thanh toán phổ biến giúp Olist ưu tiên tối ưu checkout flow, đàm phán phí với payment provider, và thiết kế chương trình khuyến mãi phù hợp (VD: cashback riêng cho credit card).
+
+**Insight rút ra:**
+
+- **Credit card** chiếm ~74% — phương thức chủ đạo, cần ưu tiên tối ưu trải nghiệm checkout
+- **Boleto** (~19%) — phương thức tiền mặt đặc trưng của Brazil, quan trọng với nhóm khách hàng chưa có tài khoản ngân hàng
+- **Voucher & Debit card** chiếm thiểu số — cần đánh giá ROI trước khi đầu tư thêm
+
+---
+
+### Chart 07 — Phân phối Thời gian Giao hàng (Delivery Time Distribution)
+
+![Chart 07 - Delivery Distribution](chart_07_delivery.png)
+
+**Chức năng:** Histogram hoặc KDE plot thể hiện phân phối số ngày giao hàng trên toàn bộ đơn hàng. Cho thấy **hình dạng thực tế của delivery performance** — không chỉ dừng lại ở con số trung bình.
+
+**Vì sao cần chart này?**
+Con số trung bình (~18 ngày) có thể che giấu outliers nguy hiểm. Chart này cho thấy bao nhiêu % đơn hàng giao nhanh và bao nhiêu % giao rất chậm — thông tin thiết yếu để đặt ra SLA target thực tế.
+
+**Insight rút ra:**
+
+- Phân phối lệch phải (right-skewed) — đa số đơn giao trong 5–15 ngày, nhưng có đuôi dài với nhiều đơn trễ nghiêm trọng
+- Các bang phía Bắc (RR, AP, AM) kéo đuôi phải lên đáng kể, trung bình **25–30 ngày**
+- Đây là bằng chứng cho thấy cần cải thiện logistics tại các bang xa trung tâm
+
+---
+
+## 📊 Power BI Dashboard
+
+Dashboard gồm 3 trang:
+
+| Trang | Nội dung |
+|---|---|
+| Overview | 5 KPI Cards + Line Chart doanh thu + Bar Chart Top 10 States |
+| Product Analysis | Bar Chart Top 15 Categories + Table + Donut Chart |
+| Delivery & Satisfaction | Bar Chart Delivery by State + Column Chart Review + Scatter Chart |
+
+**Preview Dashboard:**
+
+![Overview Dashboard](overview_dashboard.png)
+
+![Product Analysis](Product_Analysis.png)
+
+![Delivery & Satisfaction](Delivery&Satisfaction.png)
 
 ---
 
@@ -163,15 +306,42 @@ jupyter notebook Olist_EDA.ipynb
 
 ---
 
-## 📊 Power BI Dashboard
+## 📝 Kết luận & Bài học rút ra
 
-Dashboard gồm 3 trang:
+### Tổng kết dự án
 
-| Trang | Nội dung |
+Dự án phân tích thành công toàn bộ vòng đời của một đơn hàng E-commerce — từ lúc đặt hàng đến khi giao và được đánh giá — trên nền tảng Olist với dữ liệu thực tế 2 năm. Ba phát hiện quan trọng nhất:
+
+**1. Delivery time là đòn bẩy lớn nhất để cải thiện customer satisfaction.**
+Dữ liệu cho thấy mối quan hệ trực tiếp và đo lường được giữa tốc độ giao hàng và điểm review. Đây không phải giả thuyết — đây là bằng chứng từ hàng chục nghìn đơn hàng thực tế. Nếu Olist muốn tăng rating, cải thiện logistics là ưu tiên số 1, đặc biệt tại các bang phía Bắc nơi thời gian giao hàng đang ở mức 25–30 ngày.
+
+**2. Thị trường Brazil phân bổ không đều — São Paulo là trọng điểm nhưng cũng là rủi ro.**
+40% doanh thu đến từ 1 bang duy nhất. Đây vừa là cơ hội (tập trung nguồn lực hiệu quả) vừa là rủi ro tập trung (nếu SP sụt giảm, toàn platform bị ảnh hưởng nặng). Các bang phía Bắc vừa có delivery time dài nhất, vừa có doanh thu thấp nhất — logistics yếu kém đang trực tiếp cản trở tăng trưởng tại những khu vực tiềm năng này.
+
+**3. Credit card chiếm 74% — nhưng Boleto 19% không thể bỏ qua.**
+Boleto là phương thức đặc trưng cho nhóm khách hàng chưa có tài khoản ngân hàng (unbanked) — một phân khúc lớn tại Brazil. Cắt giảm hỗ trợ Boleto để ưu tiên tối ưu credit card flow có thể vô tình loại bỏ ~1/5 lượng giao dịch hiện tại.
+
+---
+
+### Kỹ năng thực hành được qua dự án
+
+| Kỹ năng | Áp dụng cụ thể |
 |---|---|
-| Overview | 5 KPI Cards + Line Chart doanh thu + Bar Chart Top 10 States |
-| Product Analysis | Bar Chart Top 15 Categories + Table + Donut Chart |
-| Delivery & Satisfaction | Bar Chart Delivery by State + Column Chart Review + Scatter Chart |
+| **Data Wrangling** | Merge 9 bảng CSV, xử lý missing values, datetime conversion |
+| **EDA Systematic** | 7 góc phân tích có cấu trúc, không phân tích ngẫu nhiên |
+| **Visualization** | Chọn đúng chart type cho từng loại câu hỏi (trend → line, comparison → bar, distribution → histogram) |
+| **ETL Pipeline** | Tự động hóa từ raw CSV → clean data → Power BI ready |
+| **Business Thinking** | Translate số liệu thành insight có thể hành động (actionable insights) |
+| **Dashboard Design** | Phân tầng thông tin theo 3 page: Overview → Product → Delivery |
+
+---
+
+### Hướng phát triển tiếp theo
+
+- **RFM Segmentation:** Phân loại khách hàng theo Recency, Frequency, Monetary để xây dựng chiến lược retention có mục tiêu → [Xem dự án tiếp theo](https://github.com/trantanphat0811/rfm-segmentation)
+- **Churn Prediction:** Dùng Machine Learning để dự báo khách hàng nào có nguy cơ rời bỏ platform
+- **Delivery Time Forecasting:** Xây dựng model dự báo thời gian giao hàng dựa trên bang, danh mục và seller — giúp set expectation chính xác cho khách hàng ngay từ lúc đặt hàng
+- **Seller Performance Analysis:** Phân tích hiệu suất từng seller để xác định top performers và những sellers cần hỗ trợ cải thiện
 
 ---
 
