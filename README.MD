@@ -2,7 +2,6 @@
 
 > Phân tích toàn diện dữ liệu thương mại điện tử Brazil giai đoạn 2016–2018 sử dụng Python và Power BI.
 
-![Python](https://img.shields.io/badge/Python-3.10-blue?logo=python) ![Power BI](https://img.shields.io/badge/PowerBI-Dashboard-yellow?logo=powerbi) ![License](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)
 
 ---
 
