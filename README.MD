@@ -2,7 +2,7 @@
 
 > Phân tích toàn diện dữ liệu thương mại điện tử Brazil giai đoạn 2016–2018 sử dụng Python và Power BI.
 
-![Python](https://img.shields.io/badge/Python-3.10-blue?logo=python) ![Power BI](https://img.shields.io/badge/PowerBI-Dashboard-yellow?logo=powerbi) ![License](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)
+
 
 ---
 
@@ -22,11 +22,13 @@ Dự án này phân tích bộ dữ liệu thực tế từ **Olist** — nền 
 
 ## 🎯 Mục tiêu phân tích
 
-- Phân tích xu hướng doanh thu theo thời gian
-- Xác định các bang và danh mục sản phẩm có hiệu suất cao nhất
-- Đánh giá mối quan hệ giữa thời gian giao hàng và sự hài lòng của khách hàng
-- Phân tích phương thức thanh toán phổ biến
-- Xây dựng dashboard trực quan phục vụ ra quyết định kinh doanh
+| # | Mục tiêu | Trạng thái |
+|---|---|---|
+| 1 | Phân tích xu hướng doanh thu theo thời gian | ✅ Hoàn thành |
+| 2 | Xác định các bang và danh mục sản phẩm có hiệu suất cao nhất | ✅ Hoàn thành |
+| 3 | Đánh giá mối quan hệ giữa thời gian giao hàng và sự hài lòng của khách hàng | ✅ Hoàn thành |
+| 4 | Phân tích phương thức thanh toán phổ biến | ✅ Hoàn thành |
+| 5 | Xây dựng dashboard trực quan phục vụ ra quyết định kinh doanh | ✅ Hoàn thành |
 
 ---
 
@@ -62,17 +64,18 @@ olist_eda/
 │   ├── powerbi_monthly.csv
 │   ├── powerbi_state.csv
 │   └── powerbi_category.csv
-├── image/
-├── chart_01_monthly.png
-├── chart_02_states.png
-├── chart_03_categories.png
-├── chart_04_status.png
-├── chart_05_reviews.png
-├── chart_06_payment.png
-├── chart_07_delivery.png
-├── overview_dashboard.png
-├── Product_Analysis.png
-├── Delivery&Satisfaction.png
+├── charts/                          ← Toàn bộ biểu đồ phân tích
+│   ├── chart_01_monthly.png
+│   ├── chart_02_states.png
+│   ├── chart_03_categories.png
+│   ├── chart_04_status.png
+│   ├── chart_05_reviews.png
+│   ├── chart_06_payment.png
+│   └── chart_07_delivery.png
+├── image/                           ← Ảnh dashboard Power BI
+│   ├── overview_dashboard.png
+│   ├── Product_Analysis.png
+│   └── Delivery&Satisfaction.png
 ├── Olist_EDA.ipynb
 └── README.md
 ```
@@ -129,13 +132,15 @@ jupyter notebook Olist_EDA.ipynb
 
 ## 📈 Charts — Phân tích & Giải thích
 
-Dưới đây là toàn bộ 7 biểu đồ được tạo ra trong notebook, kèm mô tả chức năng và insight rút ra từ mỗi chart.
+Toàn bộ 7 biểu đồ được lưu trong thư mục `charts/`, kèm mô tả chức năng và insight rút ra từ mỗi chart.
 
 ---
 
 ### Chart 01 — Doanh thu theo tháng (Monthly Revenue Trend)
 
-![Chart 01 - Monthly Revenue](chart_01_monthly.png)
+> 🎯 **Thực hiện mục tiêu #1:** Phân tích xu hướng doanh thu theo thời gian
+
+![Chart 01 - Monthly Revenue](charts/chart_01_monthly.png)
 
 **Chức năng:** Line chart thể hiện tổng doanh thu (BRL) theo từng tháng từ 2016 đến 2018. Đây là chart **tổng quan nhất** của toàn bộ dự án — cho thấy xu hướng tăng trưởng và các điểm bất thường theo thời gian.
 
@@ -152,7 +157,9 @@ Trước khi đi sâu vào bất kỳ phân tích nào, cần hiểu tổng th�
 
 ### Chart 02 — Doanh thu theo Bang (Revenue by State)
 
-![Chart 02 - Revenue by State](chart_02_states.png)
+> 🎯 **Thực hiện mục tiêu #2:** Xác định các bang có hiệu suất cao nhất
+
+![Chart 02 - Revenue by State](charts/chart_02_states.png)
 
 **Chức năng:** Bar chart nằm ngang xếp hạng 27 bang của Brazil theo tổng doanh thu. Cho thấy sự **tập trung địa lý** của thị trường E-commerce tại Brazil.
 
@@ -169,7 +176,9 @@ Không phải mọi bang đều đóng góp như nhau. Xác định được ban
 
 ### Chart 03 — Top 15 Danh mục Sản phẩm (Product Categories)
 
-![Chart 03 - Top Categories](chart_03_categories.png)
+> 🎯 **Thực hiện mục tiêu #2:** Xác định các danh mục sản phẩm có hiệu suất cao nhất
+
+![Chart 03 - Top Categories](charts/chart_03_categories.png)
 
 **Chức năng:** Bar chart so sánh doanh thu của 15 danh mục sản phẩm bán chạy nhất. Giúp xác định **portfolio sản phẩm nào đang drive revenue** cho platform.
 
@@ -186,7 +195,9 @@ Trong E-commerce, không phải category nào cũng đóng góp như nhau. Biế
 
 ### Chart 04 — Phân bổ Trạng thái Đơn hàng (Order Status Distribution)
 
-![Chart 04 - Order Status](chart_04_status.png)
+> 📌 **Chart bổ sung:** Đo lường chất lượng vận hành tổng thể của platform
+
+![Chart 04 - Order Status](charts/chart_04_status.png)
 
 **Chức năng:** Pie chart hoặc bar chart thể hiện tỷ lệ các trạng thái đơn hàng (delivered, shipped, canceled, unavailable...). Đây là chart **đo lường chất lượng vận hành** của toàn platform.
 
@@ -202,7 +213,9 @@ Tỷ lệ đơn hàng không giao thành công (canceled, unavailable) phản á
 
 ### Chart 05 — Review Score vs Thời gian Giao hàng (Delivery Time Impact)
 
-![Chart 05 - Reviews vs Delivery](chart_05_reviews.png)
+> 🎯 **Thực hiện mục tiêu #3:** Đánh giá mối quan hệ giữa thời gian giao hàng và sự hài lòng của khách hàng
+
+![Chart 05 - Reviews vs Delivery](charts/chart_05_reviews.png)
 
 **Chức năng:** Bar chart hoặc grouped chart thể hiện mối quan hệ giữa số ngày giao hàng và điểm review trung bình của khách hàng. Đây là **insight quan trọng nhất** của toàn dự án về customer experience.
 
@@ -220,7 +233,9 @@ Delivery time là yếu tố nằm trong tầm kiểm soát của Olist và sell
 
 ### Chart 06 — Phương thức Thanh toán (Payment Methods)
 
-![Chart 06 - Payment Methods](chart_06_payment.png)
+> 🎯 **Thực hiện mục tiêu #4:** Phân tích phương thức thanh toán phổ biến
+
+![Chart 06 - Payment Methods](charts/chart_06_payment.png)
 
 **Chức năng:** Pie chart hoặc bar chart thể hiện tỷ lệ các phương thức thanh toán được sử dụng (credit card, boleto, voucher, debit card). Cho thấy **hành vi tài chính** của người mua Brazil.
 
@@ -237,7 +252,9 @@ Hiểu phương thức thanh toán phổ biến giúp Olist ưu tiên tối ưu 
 
 ### Chart 07 — Phân phối Thời gian Giao hàng (Delivery Time Distribution)
 
-![Chart 07 - Delivery Distribution](chart_07_delivery.png)
+> 🎯 **Thực hiện mục tiêu #3:** Đánh giá mối quan hệ giữa thời gian giao hàng và sự hài lòng của khách hàng
+
+![Chart 07 - Delivery Distribution](charts/chart_07_delivery.png)
 
 **Chức năng:** Histogram hoặc KDE plot thể hiện phân phối số ngày giao hàng trên toàn bộ đơn hàng. Cho thấy **hình dạng thực tế của delivery performance** — không chỉ dừng lại ở con số trung bình.
 
@@ -254,21 +271,23 @@ Con số trung bình (~18 ngày) có thể che giấu outliers nguy hiểm. Char
 
 ## 📊 Power BI Dashboard
 
-Dashboard gồm 3 trang:
+> 🎯 **Thực hiện mục tiêu #5:** Xây dựng dashboard trực quan phục vụ ra quyết định kinh doanh
 
-| Trang | Nội dung |
-|---|---|
-| Overview | 5 KPI Cards + Line Chart doanh thu + Bar Chart Top 10 States |
-| Product Analysis | Bar Chart Top 15 Categories + Table + Donut Chart |
-| Delivery & Satisfaction | Bar Chart Delivery by State + Column Chart Review + Scatter Chart |
+Dashboard gồm 3 trang, ảnh preview lưu trong thư mục `image/`:
+
+| Trang | Nội dung | Thực hiện mục tiêu |
+|---|---|---|
+| Overview | 5 KPI Cards + Line Chart doanh thu + Bar Chart Top 10 States | #1, #2 |
+| Product Analysis | Bar Chart Top 15 Categories + Table + Donut Chart | #2 |
+| Delivery & Satisfaction | Bar Chart Delivery by State + Column Chart Review + Scatter Chart | #3 |
 
 **Preview Dashboard:**
 
-![Overview Dashboard](overview_dashboard.png)
+![Overview Dashboard](image/overview_dashboard.png)
 
-![Product Analysis](Product_Analysis.png)
+![Product Analysis](image/Product_Analysis.png)
 
-![Delivery & Satisfaction](Delivery&Satisfaction.png)
+![Delivery & Satisfaction](image/Delivery&Satisfaction.png)
 
 ---
 
