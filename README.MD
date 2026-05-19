@@ -21,13 +21,13 @@ Dự án này phân tích bộ dữ liệu thực tế từ **Olist** — nền 
 
 ## 🎯 Mục tiêu phân tích
 
-| # | Mục tiêu | Trạng thái |
+| # | Mục tiêu | Xem phân tích |
 |---|---|---|
-| 1 | Phân tích xu hướng doanh thu theo thời gian | ✅ Hoàn thành |
-| 2 | Xác định các bang và danh mục sản phẩm có hiệu suất cao nhất | ✅ Hoàn thành |
-| 3 | Đánh giá mối quan hệ giữa thời gian giao hàng và sự hài lòng của khách hàng | ✅ Hoàn thành |
-| 4 | Phân tích phương thức thanh toán phổ biến | ✅ Hoàn thành |
-| 5 | Xây dựng dashboard trực quan phục vụ ra quyết định kinh doanh | ✅ Hoàn thành |
+| 1 | Phân tích xu hướng doanh thu theo thời gian | [📈 Chart 01 — Monthly Revenue](#chart-01--doanh-thu-theo-tháng-monthly-revenue-trend) |
+| 2 | Xác định các bang và danh mục sản phẩm có hiệu suất cao nhất | [🗺️ Chart 02 — States](#chart-02--doanh-thu-theo-bang-revenue-by-state) · [🛍️ Chart 03 — Categories](#chart-03--top-15-danh-mục-sản-phẩm-product-categories) |
+| 3 | Đánh giá mối quan hệ giữa thời gian giao hàng và sự hài lòng của khách hàng | [⭐ Chart 05 — Reviews](#chart-05--review-score-vs-thời-gian-giao-hàng-delivery-time-impact) · [🚚 Chart 07 — Delivery](#chart-07--phân-phối-thời-gian-giao-hàng-delivery-time-distribution) |
+| 4 | Phân tích phương thức thanh toán phổ biến | [💳 Chart 06 — Payment](#chart-06--phương-thức-thanh-toán-payment-methods) |
+| 5 | Xây dựng dashboard trực quan phục vụ ra quyết định kinh doanh | [📊 Power BI Dashboard](#-power-bi-dashboard) |
 
 ---
 
